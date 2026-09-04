@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS HomeWork #6</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body style="background-color: #222">
+    <div class="container">
+      <main class="main-container">
+        <section class="wrapper">
+          <form id="form">
+            <label for="form-title">Введите название товара</label>
+            <input type="text" id="form-title" />
+            <label for="form-price">Введите цену товара</label>
+            <input type="number" id="form-price" />
+            <label for="form-description">Введите описание товара</label>
+            <textarea id="form-description" cols="25" rows="4"></textarea>
+            <button type="submit" id="form-btn">Создать</button>
+            <h3 id="error-toast"></h3>
+          </form>
+          <form id="patch-form">
+            <label for="patch-form-id">Выберите товар</label>
+            <select id="patch-form-id"></select>
+            <label class="patch-form-delivered">
+              <input
+                type="radio"
+                id="patch-form-delivered-input"
+                name="status"
+                value="Доставлено"
+              />
+              <span for="patch-form-delivered-input">Доставлено</span>
+            </label>
+            <label class="patch-form-sent">
+              <input
+                type="radio"
+                id="patch-form-sent-input"
+                name="status"
+                value="Отправлено"
+              />
+              <span for="patch-form-sent-input">Отправлено</span>
+            </label>
+            <button type="submit" id="patch-form-btn">Обновить</button>
+            <h3 id="patch-error-toast"></h3>
+          </form>
+        </section>
+        <div class="content">
+          <section class="wrapper" id="content"></section>
+          <div class="content-error-toast hidden" id="content-error-toast">
+            <h2>Ошибка при получении данных</h2>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

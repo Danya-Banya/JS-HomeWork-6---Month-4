@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.hidden {
+  display: none !important;
+}
+#form {
+  display: grid;
+  gap: 10px;
+  background-color: #fff;
+}
+body {
+  background-color: #222;
+}
+input {
+  width: 300px;
+  height: 25px;
+}
+textarea {
+  width: 300px;
+}
+.main-container {
+  display: flex;
+  gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+}
+.container{
+  max-width: 1440px;
+  justify-items: center;
+}
+.product {
+  background-color: #222;
+  margin-top: 10px;
+  padding: 20px;
+  max-width: 350px;
+  min-height: 130px;
+  color: #fff;
+}
+.product button {
+  width: 250px;
+  height: 25px;
+}
+button {
+  width: 300px;
+  height: 25px;
+  cursor: pointer;
+}
+#content {
+  max-height: 602px;
+  overflow-y: scroll;
+  border: 2px #222 solid;
+  padding: 20px;
+}
+.wrapper {
+  display: grid;
+  padding: 20px;
+  border: 2px #222 solid;
+}
+#patch-form {
+  display: grid;
+  gap: 10px;
+  background-color: #fff;
+  margin-top: 50px;
+}
+.patch-form-delivered {
+  display: flex;
+}
+#patch-form-delivered-input,
+#patch-form-sent-input {
+  width: 15px;
+  cursor: pointer;
+}
+.patch-form-delivered,
+.patch-form-sent {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+.deleteProductButton:hover {
+  background-color: darkred;
+  transition: 0.7s;
+  color: #fff;
+  border: none;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.deleteProductButton {
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  transition: 0.7s;
+  margin-top: 10px;
+}
