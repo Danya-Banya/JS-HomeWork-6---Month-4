@@ -41,6 +41,7 @@ textarea {
   min-height: 130px;
   color: #fff;
   border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 .product button {
   width: 250px;
@@ -76,6 +77,7 @@ button {
 #patch-form-sent-input {
   width: 15px;
   cursor: pointer;
+  background-color: #222;
 }
 .patch-form-delivered,
 .patch-form-sent {
@@ -86,7 +88,7 @@ button {
 }
 .deleteProduct:hover {
   background-color: darkred;
-  transition: 0.7s;
+  transition: 0.3s;
   color: #fff;
   border: none;
   font-family:
@@ -97,31 +99,30 @@ button {
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  transition: 0.7s;
+  transition: 0.3s;
   margin-top: 10px;
 }
 #form-btn {
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  transition: 0.7s;
+  transition: 0.3s;
 }
 #form-btn:hover {
   background-color: #222;
   color: #fff;
-  transition: 0.7s;
+  transition: 0.3s;
   border: none;
-
 }
 #patch-form-btn {
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  transition: 0.7s;
+  transition: 0.3s;
 }
 #patch-form-btn:hover {
   background-color: #222;
   color: #fff;
-  transition: 0.7s;
+  transition: 0.3s;
   border: none;
 }
