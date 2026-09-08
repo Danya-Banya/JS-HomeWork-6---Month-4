@@ -12,13 +12,6 @@ const patchErrorToast = document.getElementById("patch-error-toast");
 const contentErrorToast = document.getElementById("content-error-toast");
 
 const isEmpty = (inputValue) => !inputValue.trim();
-const lastProduct = () => {
-  return fetch("http://localhost:8000/products")
-    .then((response) => response.json())
-    .then((res) => {
-      return res.length;
-    });
-};
 const clearUI = () => {
   const content = document.getElementById("content");
   content.innerHTML = "";
@@ -29,15 +22,19 @@ const renderProducts = (products = []) => {
   clearUI();
   const content = document.getElementById("content");
   return products.forEach((product) => {
+    const resultPrice =
+      product.price && !isNaN(product.price)
+        ? `$${product.price}`
+        : "Цена не указана";
     const div = document.createElement("div");
     div.setAttribute("class", "product");
     div.innerHTML = `
       <h3>${product.title.trim() || "Отсутствует"}</h3>
       <p>${product.description.trim() || "Отсутствует"}</p>
-      <span>${`$${product.price}` || "Не указано"}</span> 
+      <span>${resultPrice}</span> 
       <br>
       <h5>Статус: ${product.status}</h5>
-      <button class="deleteProductButton" onclick="deleteProduct('${product.id}')">Удалить</button>
+      <button class="deleteProduct" id="deleteProduct${product.id}" onclick="deleteProduct('${product.id}')">Удалить</button>
       `;
     content.append(div);
     const option = document.createElement("option");
@@ -49,7 +46,6 @@ const renderProducts = (products = []) => {
 
 const onSubmit = async (event) => {
   event.preventDefault();
-  const newId = await lastProduct();
   try {
     if (!isEmpty(formTitle.value) && !isEmpty(formDescription.value)) {
       fetch("http://localhost:8000/products", {
@@ -62,7 +58,6 @@ const onSubmit = async (event) => {
           description: `${formDescription.value.trim() || "Отсутствует"}`,
           price: `${formPrice.value || "Цена не указана"}`,
           status: "Отправляется",
-          id: newId,
         }),
       })
         .then((response) => response.json())
@@ -81,39 +76,43 @@ const onSubmit = async (event) => {
   }
 };
 
-const patchProduct = (patchId, e) => {
+const patchProduct = (e) => {
   e.preventDefault();
+  const selectedValue = patchFormId.value;
+  const patchId = selectedValue ? selectedValue.split(" — ")[1] : null;
   const patchFromData = new FormData(patchForm);
   const statusResult = patchFromData.get("status");
   try {
-    if (statusResult && patchId) {
-      fetch(`http://localhost:8000/products/${patchId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          status: `${statusResult}`,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Ошибка сервера: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((res) => {
-          console.log(res);
-          getProducts();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (!statusResult) {
-      throw new Error("Выберите новый статус товара");
-    } else if (!patchId) {
-      throw new Error("Введите id товара");
+    if (!patchId) {
+      throw new Error("Выберите товар из списка");
     }
+    if (!statusResult) {
+      throw new Error("Выберите новый статус товара");
+    }
+    fetch(`http://localhost:8000/products/${patchId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: `${statusResult}`,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Ошибка сервера: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((res) => {
+        console.log(res);
+        patchErrorToast.textContent = "";
+        getProducts();
+      })
+      .catch((err) => {
+        console.log(err.message);
+        patchErrorToast.textContent = err.message;
+      });
   } catch (err) {
     patchErrorToast.textContent = err.message;
     console.log(err);
@@ -123,12 +122,18 @@ const deleteProduct = (productId) => {
   fetch(`http://localhost:8000/products/${productId}`, {
     method: "DELETE",
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Ошибка сервера: ", response.status);
+      }
+      return response.json();
+    })
     .then((res) => {
-      console.log(res);
-      document
-        .querySelector(`#deleteProduct${productId}`)
-        .parentElement.remove();
+      getProducts();
+    })
+    .catch((err) => {
+      console.error(err);
+      contentErrorToast.textContent = err.message;
     });
 };
 const getProducts = () => {
@@ -139,14 +144,10 @@ const getProducts = () => {
     })
     .catch((err) => {
       contentErrorToast.classList.remove("hidden");
-
       console.log("Ошибка при получении данных", err);
     });
 };
 getProducts();
 
 form.addEventListener("submit", onSubmit);
-patchForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  patchProduct(patchFormId.value.split(" — ")[1], e);
-});
+patchForm.addEventListener("submit", patchProduct);

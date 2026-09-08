@@ -27,8 +27,9 @@ textarea {
   gap: 20px;
   background-color: #fff;
   padding: 20px;
+  border-radius: 10px;
 }
-.container{
+.container {
   max-width: 1440px;
   justify-items: center;
 }
@@ -39,6 +40,7 @@ textarea {
   max-width: 350px;
   min-height: 130px;
   color: #fff;
+  border-radius: 20px;
 }
 .product button {
   width: 250px;
@@ -59,6 +61,7 @@ button {
   display: grid;
   padding: 20px;
   border: 2px #222 solid;
+  border-radius: 10px;
 }
 #patch-form {
   display: grid;
@@ -81,7 +84,7 @@ button {
   display: flex;
   gap: 10px;
 }
-.deleteProductButton:hover {
+.deleteProduct:hover {
   background-color: darkred;
   transition: 0.7s;
   color: #fff;
@@ -90,10 +93,35 @@ button {
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.deleteProductButton {
+.deleteProduct {
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   transition: 0.7s;
   margin-top: 10px;
+}
+#form-btn {
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  transition: 0.7s;
+}
+#form-btn:hover {
+  background-color: #222;
+  color: #fff;
+  transition: 0.7s;
+  border: none;
+
+}
+#patch-form-btn {
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  transition: 0.7s;
+}
+#patch-form-btn:hover {
+  background-color: #222;
+  color: #fff;
+  transition: 0.7s;
+  border: none;
 }

@@ -1,32 +1,11 @@
 {
   "products": [
     {
-      "title": "Миксер",
-      "description": "Кухонный прибор",
-      "price": "20",
+      "title": "Подставка для ноутбука",
+      "description": "Железная, прочаня",
+      "price": "32",
       "status": "Отправляется",
-      "id": "nL-B9JTjdAY"
-    },
-    {
-      "title": "Венчик",
-      "description": "Кухонный прибор",
-      "price": "5",
-      "status": "Отправляется",
-      "id": "rx7GC2mJJUA"
-    },
-    {
-      "title": "Чайник",
-      "description": "Электрический чайник",
-      "price": "10",
-      "status": "Отправляется",
-      "id": "YZ2EATI4er0"
-    },
-    {
-      "title": "Утюг",
-      "description": "Бытовой прибор",
-      "price": "25",
-      "status": "Отправляется",
-      "id": "2yhGgdebLpY"
+      "id": "Gzk9px1Iirc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
